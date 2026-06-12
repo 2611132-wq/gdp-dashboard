@@ -1,19 +1,41 @@
-# :earth_americas: GDP dashboard template
+# 1. 미디어 및 장르 데이터 정의
+media = ["드라마", "영화", "숏츠", "웹툰", "예능"]
 
-A simple Streamlit app showing the GDP of different countries in the world.
+genres = [
+    ["로맨스", "액션", "코믹"], 
+    ["로맨스", "호러", "액션"], 
+    ["댄스", "챌린지", "코믹"], 
+    ["로맨스", "액션", "코믹"], 
+    ["코믹", "여행", "브이로그"]
+]
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+# 2. 무한 루프 시작
+while True: 
+    print("\n" + "="*20)
+    print("현재 선택 가능한 미디어 목록")
+    print("="*20)
+    
+    # 번호와 함께 메뉴 출력 (예: 1. 드라마)
+    for i in range(len(media)):
+        print(f"{i+1}. {media[i]}")
+    print("="*20)
+        
+    # 사용자로부터 입력 받기
+    try:
+        n = int(input("번호를 입력하세요 (종료: 0): "))
+    except ValueError:
+        print("❌ 숫자만 입력할 수 있습니다. 다시 시도해주세요.")
+        continue
+    
+    # 조건문에 따른 처리
+    if n == 0: 
+        print("🚪 프로그램을 종료합니다. 이용해 주셔서 감사합니다!")
+        break  # 루프 탈출
+        
+    elif 1 <= n <= 5: 
+        # 사용자가 입력한 번호(1~5)를 인덱스(0~4)로 변환하여 출력
+        print(f"\n🎬 선택하신 [{media[n-1]}]의 장르 목록입니다.")
+        print(f"👉 {genres[n-1]}") 
+        
+    else: 
+        print("❌ 잘못된 번호입니다. 1부터 5 사이의 번호나 0을 입력해주세요.")
